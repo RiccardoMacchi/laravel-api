@@ -68,4 +68,24 @@ class PageController extends Controller
         return response()->json(compact('success','item'));
     }
 
+    public function listByType($slug){
+        $type = Type::where('slug', $slug)->with('items')->first();
+        if($type){
+            $success = true;
+        } else{
+            $success = false;
+        }
+        return response()->json(compact('success','type'));
+    }
+
+    public function listByTechnology($slug){
+        $technology = Technology::where('slug', $slug)->with('items')->first();
+        if($technology){
+            $success = true;
+        } else{
+            $success = false;
+        }
+        return response()->json(compact('success','technology'));
+    }
+
 }
