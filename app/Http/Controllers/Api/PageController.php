@@ -51,7 +51,7 @@ class PageController extends Controller
     }
 
     public function itemBySlug($slug){
-        $item = Item::where('slug', $slug)->with('technologies','type')->get();
+        $item = Item::where('slug', $slug)->with('technologies','type')->first();
         if($item){
             $success = true;
             if($item->img_path){
