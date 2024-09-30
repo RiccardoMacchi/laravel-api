@@ -1,0 +1,16 @@
+/* MODIFICA TUTTE LE BARRE DI SCROLL */
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Contenitore barra di scrollo */
+*::-webkit-scrollbar-track {
+    background-color: #a3a3a3;
+    border-radius: 10px;
+}
+
+/* Barra di scrollo */
+*::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #343a40;
+}
