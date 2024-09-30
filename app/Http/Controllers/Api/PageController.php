@@ -37,7 +37,7 @@ class PageController extends Controller
         } else{
             $success = false;
         }
-        return response()->json($technologies);
+        return response()->json(compact('success','technologies'));
     }
 
     public function allTypes(){
@@ -50,5 +50,22 @@ class PageController extends Controller
         return response()->json($types);
     }
 
+    public function itemBySlug($slug){
+        $item = Item::where('slug', $slug)->with('technologies','type')->get();
+        if($item){
+            $success = true;
+            if($item->img_path){
+                $item->img_path = asset('storage/' . $item->img_path);
+            } else {
+                $item->img_path = '/placeholder_img.jpg';
+                $item->original_img_name = 'No image';
+            }
+        } else{
+            $success = false;
+
+        }
+
+        return response()->json(compact('success','item'));
+    }
 
 }

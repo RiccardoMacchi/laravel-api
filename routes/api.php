@@ -23,4 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/',[PageController::class, 'index']);
 Route::get('/technologies',[PageController::class, 'allTechnologies']);
 Route::get('/types',[PageController::class, 'allTypes']);
+Route::get('/item-by-slug/{slug}',[PageController::class, 'itemBySlug']);
+
 
