@@ -23,7 +23,7 @@ class ItemSeeder extends Seeder
             $new_item = new Item();
             $new_item->title = $faker->word();
             $new_item->git_link = $faker->word();
-            $new_item->lenguages = $faker->word();
+            $new_item->repo_name = $faker->word();
             $new_item->date = $faker->dateTime();
             $new_item->description = $faker->paragraph();
             $new_item->slug = Helper::generateSlug($new_item->title, Item::class);

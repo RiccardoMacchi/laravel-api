@@ -36,10 +36,10 @@
             </div>
 
             <div class="form-group">
-                <label for="lenguages">Linguaggi Usati:</label>
-                <input type="text" class="form-control" id="lenguages" name="lenguages"
-                    placeholder="Inserisci i linguaggi usati" value="{{ old('lenguages') }}">
-                @error('lenguages')
+                <label for="repo_name">Nome repo:</label>
+                <input type="text" class="form-control" id="repo_name" name="repo_name"
+                    placeholder="Inserisci il nome della repository" value="{{ old('repo_name') }}">
+                @error('repo_name')
                     <small>{{ $message }}</small>
                 @enderror
             </div>

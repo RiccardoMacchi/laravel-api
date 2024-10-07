@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             TechnologySeeder::class,
             ItemSeeder::class,
             ItemTechnologySeeder::class,
+            FrameworksSeeder::class,
+            FrameworksItemsSeeder::class,
         ]);
     }
 }

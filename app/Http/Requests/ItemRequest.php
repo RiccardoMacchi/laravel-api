@@ -24,7 +24,7 @@ class ItemRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'min:5', 'max:100'],
             'git_link' => ['required', 'string', 'min:5', 'max:255'],
-            'lenguages' => ['required', 'string', 'min:2', 'max:255'],
+            'repo_name' => ['required', 'string', 'min:2', 'max:255'],
             'date' => ['required', 'date'],
             'description' => ['required', 'string','min:10'],
             'type_id' => ['required'],
@@ -45,10 +45,10 @@ class ItemRequest extends FormRequest
             'git_link.min' => 'Il link Git deve avere almeno 5 carattere.',
             'git_link.max' => 'Il link Git non può superare i 255 caratteri.',
 
-            'lenguages.required' => 'Il campo linguaggi è obbligatorio.',
-            'lenguages.string' => 'Il campo linguaggi deve essere una stringa.',
-            'lenguages.min' => 'Il campo linguaggi deve avere almeno 2 carattere.',
-            'lenguages.max' => 'Il campo linguaggi non può superare i 255 caratteri.',
+            'repo_name.required' => 'Il campo nome repository è obbligatorio.',
+            'repo_name.string' => 'Il campo nome repository deve essere una stringa.',
+            'repo_name.min' => 'Il campo nome repository deve avere almeno 2 carattere.',
+            'repo_name.max' => 'Il campo nome repository non può superare i 255 caratteri.',
 
             'date.required' => 'La data è obbligatoria.',
             'date.date' => 'Il valore fornito deve essere una data valida.',

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Type;
 use App\Models\Technology;
+use App\Models\Framework;
+
 
 
 class Item extends Model
@@ -16,7 +18,7 @@ class Item extends Model
     protected $fillable = [
         'title',
         'git_link',
-        'lenguages',
+        'repo_name',
         'date',
         'description',
         'slug',
@@ -31,5 +33,9 @@ class Item extends Model
 
     public function technologies(){
         return $this->belongsToMany(Technology::class);
+    }
+
+    public function frameworks(){
+        return $this->belongsToMany(Framework::class);
     }
 }

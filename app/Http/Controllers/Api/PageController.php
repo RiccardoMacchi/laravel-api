@@ -9,11 +9,13 @@ use App\Models\Item;
 use App\Models\Type;
 use App\Models\Technology;
 
+use Illuminate\Support\Facades\Storage;
+
 
 class PageController extends Controller
 {
     public function index(){
-        $items = Item::orderBy('id')->with('technologies', 'type')->get();
+        $items = Item::orderBy('id')->with('technologies', 'type')->paginate(20);
 
 
         if($items){
@@ -47,7 +49,7 @@ class PageController extends Controller
         } else{
             $success = false;
         }
-        return response()->json($types);
+        return response()->json(compact('success','types'));
     }
 
     public function itemBySlug($slug){
@@ -55,9 +57,9 @@ class PageController extends Controller
         if($item){
             $success = true;
             if($item->img_path){
-                $item->img_path = asset('storage/' . $item->img_path);
+                $item->img_path = Storage::url($item->img_path);
             } else {
-                $item->img_path = '/placeholder_img.jpg';
+                $item->img_path = Storage::url('placeholder_img.jpg');
                 $item->original_img_name = 'No image';
             }
         } else{

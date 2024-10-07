@@ -22,10 +22,10 @@
                             href="{{ route('admin.items.index', ['direction' => $direction, 'column' => 'title']) }}">Nome</a>
                     </th>
                     <th scope="col">Preview</th>
-                    <th scope="col">Type</th>
+                    <th scope="col">Tecnologia</th>
                     <th scope="col">Link a GitHub</th>
                     <th scope="col">Descrizione</th>
-                    <th scope="col">Tecnologia</th>
+                    <th scope="col">Tipo</th>
                     <th scope="col">Azioni</th>
                 </tr>
             </thead>
@@ -34,28 +34,30 @@
                     <tr>
                         <th>{{ $item->id }}</th>
                         <td>{{ $item->title }}</td>
-                        <td><img class="img-fluid thumb" src="{{ asset('storage/' . $item->img_path) }}" alt=""
-                                onerror="this.src='/placeholder_img.jpg'"></td>
+                        <td><img class="img-fluid thumb" src="{{ asset('storage/' . $item->img_path) }}"
+                                alt="{{ $item->title }}" onerror="this.src='/placeholder_img.jpg'"></td>
                         <td>
-                            <a class="badge
-                            @if ($item->type?->name == 'PHP' || $item->type?->name == 'CSS') text-bg-primary
-                            @elseif ($item->type?->name == 'HTML') text-bg-danger
-                            @elseif ($item->type?->name == 'SASS') text-bg-secondary
-                            @elseif ($item->type?->name == 'JavaScript') text-bg-warning
-                            @elseif ($item->type?->name == 'SQL') text-bg-dark
-                            @else text-bg-danger @endif"
-                                href="{{ route('admin.itemsTypes') }}">{{ $item->type ? $item->type->name : 'NESSUN TIPO' }}
-                            </a>
+                            @forelse  ($item->technologies as $tech)
+                                <a class="badge
+                                    @if ($tech?->name == 'PHP') text-bg-primary
+                                    @elseif ($tech?->name == 'HTML') text-bg-danger
+                                    @elseif ($tech?->name == 'SASS') text-bg-secondary
+                                    @elseif ($tech?->name == 'JavaScript') text-bg-warning
+                                    @elseif ($tech?->name == 'SQL') text-bg-dark
+                                    @else text-bg-danger @endif"
+                                    href="#">{{ $tech->name }}
+                                </a>
+                            @empty
+                                <a class="badge text-bg-danger" href="#">NESSUN TIPO</a>
+                            @endforelse
                         </td>
                         <td>{{ $item->git_link }}</td>
                         <td>{{ $item->description }}</td>
                         <td>
-                            @if (!$item->technologies->isEmpty())
-                                @foreach ($item->technologies as $tech)
-                                    <span class="badge text-bg-warning">{{ $tech->name }}</span>
-                                @endforeach
+                            @if ($item->type?->name)
+                                <span class="badge text-bg-warning">{{ $item->type?->name }}</span>
                             @else
-                                <span class="badge text-bg-danger">NESSUNA TECNOLOGIA</span>
+                                <span class="badge text-bg-danger">NESSUN TIPO</span>
                             @endif
                         </td>
                         {{-- Colonna azioni --}}

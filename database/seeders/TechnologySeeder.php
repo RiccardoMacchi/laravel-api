@@ -15,7 +15,7 @@ class TechnologySeeder extends Seeder
      */
     public function run(): void
     {
-        $data = ['Front End', 'Back End', 'Full Stack', 'Database', 'API', 'UI/UX', 'DevOps', 'Version Control', 'Cloud Computing'];
+        $data = ['HTML','CSS','SASS','JavaScript','PHP','SQL'];
 
         foreach ($data as $tech) {
             $new_tech = new Technology();

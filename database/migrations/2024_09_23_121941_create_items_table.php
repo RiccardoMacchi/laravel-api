@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 100);
             $table->string('git_link', 255);
-            $table->string('lenguages', 255);
+            $table->string('repo_name', 255);
             $table->string('img_path')->nullable();
             $table->string('original_img_name')->nullable();
             $table->date('date');

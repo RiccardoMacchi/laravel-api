@@ -5,8 +5,8 @@
         <h1 class="my-5">Ecco i dettagli di: {{ $item->title }}</h1>
 
         <div class="card text-center">
-            <div class="card-header d-flex justify-content-evenly">
-                <span>{{ $item->lenguages }}</span>
+            <div class="card-header d-flex justify-content-center">
+                <span>{{ $item->repo_name }}</span>
                 <a class="btn btn-warning" href="{{ route('admin.items.edit', ['item' => $item->id]) }}"><i
                         class="fa-solid fa-pencil"></i></a>
             </div>
