@@ -27,9 +27,18 @@ class PageController extends Controller
 
         if($items){
             $success = true;
+            foreach($items as $item){
+                if($item->img_path){
+                    $item->img_path = Storage::url($item->img_path);
+                } else {
+                    $item->img_path = Storage::url('placeholder_img.jpg');
+                    $item->original_img_name = 'No image';
+                }
+            }
         }else{
             $success = false;
         }
+
         $response = [
             'success'=> $success,
             'data' => $items
@@ -107,6 +116,16 @@ class PageController extends Controller
             $success = false;
         }
         return response()->json(compact('success','technology'));
+    }
+
+    public function listByFramework($slug){
+        $framework = Framework::where('slug', $slug)->with('items')->first();
+        if($framework){
+            $success = true;
+        } else{
+            $success = false;
+        }
+        return response()->json(compact('success','framework'));
     }
 
 }

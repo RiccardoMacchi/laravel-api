@@ -29,6 +29,8 @@ Route::get('/frameworks',[PageController::class, 'allFrameworks']);
 Route::get('/item-by-slug/{slug}',[PageController::class, 'itemBySlug']);
 Route::get('/list-by-type/{slug}',[PageController::class, 'listByType']);
 Route::get('/list-by-technology/{slug}',[PageController::class, 'listByTechnology']);
+Route::get('/list-by-framework/{slug}',[PageController::class, 'listByFramework']);
+
 
 // rotta mial
 Route::post('/send-email',[LeadController::class,'store']);

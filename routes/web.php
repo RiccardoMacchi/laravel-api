@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\TechnologyController;
+use App\Http\Controllers\Admin\FrameworkController;
+
 
 // Guest controller
 use App\Http\Controllers\Guest\PageController;
@@ -44,6 +46,8 @@ Route::middleware(['auth','verified'])
         Route::resource('items', ItemController::class);
         Route::resource('types', TypeController::class);
         Route::resource('techs', TechnologyController::class);
+        Route::resource('frameworks', FrameworkController::class);
+
 
     });
 
