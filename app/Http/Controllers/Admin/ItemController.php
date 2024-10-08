@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Type;
 use App\Models\Technology;
+use App\Models\Framework;
 use App\Functions\Helper;
 use App\Http\Requests\ItemRequest;
 
@@ -50,8 +51,9 @@ class ItemController extends Controller
     {
         $title = 'Aggiungi un nuovo lavoro';
         $technologies = Technology::all();
+        $frameworks = Framework::all();
         $types = Type::all();
-        return view('admin.items.create', compact('title','types','technologies'));
+        return view('admin.items.create', compact('title','types','technologies','frameworks'));
     }
 
     /**
@@ -78,6 +80,10 @@ class ItemController extends Controller
             // aggiunta dei vari tag alla nuova istanza
             $new_item->technologies()->attach($data['technologies']);
         }
+        if(array_key_exists('frameworks', $data)){
+            // aggiunta dei vari tag alla nuova istanza
+            $new_item->frameworks()->attach($data['frameworks']);
+        }
 
 
         return redirect()->route('admin.items.show', $new_item->id);
@@ -99,9 +105,10 @@ class ItemController extends Controller
     {
         $item = Item::find($id);
         $technologies = Technology::all();
+        $frameworks = Framework::all();
         $types = Type::all();
         $title = 'Stai modificando ' . $item->title;
-        return view('admin.items.edit', compact('item','title','types','technologies'));
+        return view('admin.items.edit', compact('item','title','types','technologies','frameworks'));
     }
 
     /**
@@ -135,6 +142,12 @@ class ItemController extends Controller
             $item->technologies()->sync($data['technologies']);
         } else{
             $item->technologies()->detach();
+        }
+
+        if(array_key_exists('frameworks', $data)){
+            $item->frameworks()->sync($data['frameworks']);
+        } else {
+            $item->frameworks()->detach();
         }
 
         return redirect()->route('admin.items.show', $item);

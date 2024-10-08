@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\PageController;
+use App\Http\Controllers\Admin\LeadController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +25,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/items',[PageController::class, 'index']);
 Route::get('/technologies',[PageController::class, 'allTechnologies']);
 Route::get('/types',[PageController::class, 'allTypes']);
+Route::get('/frameworks',[PageController::class, 'allFrameworks']);
 Route::get('/item-by-slug/{slug}',[PageController::class, 'itemBySlug']);
 Route::get('/list-by-type/{slug}',[PageController::class, 'listByType']);
 Route::get('/list-by-technology/{slug}',[PageController::class, 'listByTechnology']);
+
+// rotta mial
+Route::post('/send-email',[LeadController::class,'store']);
+
 

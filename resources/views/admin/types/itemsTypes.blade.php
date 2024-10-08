@@ -8,11 +8,10 @@
                 <div class="card-body">
                     <h5
                         class="fs-6 badge
-                            @if ($type->name == 'PHP' || $type->name == 'CSS') text-bg-primary
-                            @elseif ($type->name == 'HTML') text-bg-danger
-                            @elseif ($type->name == 'SASS') text-bg-secondary
-                            @elseif ($type->name == 'JavaScript') text-bg-warning
-                            @elseif ($type->name == 'SQL') text-bg-dark
+                            @if ($type->name == 'Front End') text-bg-primary
+                            @elseif ($type->name == 'Back End') text-bg-danger
+                            @elseif ($type->name == 'Full Stack') text-bg-secondary
+                            @elseif ($type->name == 'Database') text-bg-warning
                             @else text-bg-danger @endif">
                         {{ $type->name }}</h5>
                     <ul>

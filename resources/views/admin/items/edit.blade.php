@@ -68,6 +68,22 @@
                 @endforeach
             </div>
 
+            {{-- Checkbox per frameworks --}}
+            <div>
+                <label for="frameworks">Seleziona la tecnologia usata:</label>
+            </div>
+            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                @foreach ($frameworks as $framework)
+                    <input type="checkbox" class="btn-check" name="frameworks[]" value="{{ $framework->id }}"
+                        @if (
+                            ($errors->any() && in_array($framework->id, old('frameworks', []))) ||
+                                (!$errors->any() && $item->frameworks->contains($framework))) checked @endif id="framework-{{ $framework->id }}"
+                        autocomplete="off">
+                    <label class="btn btn-outline-primary"
+                        for="framework-{{ $framework->id }}">{{ $framework->name }}</label>
+                @endforeach
+            </div>
+
             <div class="form-group">
                 <label for="description">Descrizione:</label>
                 <textarea name="description" id="description"> {{ old('description', $item->description) }}</textarea>

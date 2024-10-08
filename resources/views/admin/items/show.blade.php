@@ -23,6 +23,16 @@
                 @else
                     <span class="badge text-bg-danger">NESSUNA TECNOLOGIA</span>
                 @endif
+                {{-- stampa dei frameworks --}}
+                <h5>Frameworks</h5>
+                @if (!$item->frameworks->isEmpty())
+                    @foreach ($item->frameworks as $framework)
+                        <span class="badge text-bg-warning">{{ $framework->name }}</span>
+                    @endforeach
+                @else
+                    <span class="badge text-bg-danger">NESSUN FRAMEWORK</span>
+                @endif
+
                 <p class="card-text my-5">{{ $item->description }}</p>
                 <img class="img-fluid w-25" src="{{ asset('storage/' . $item->img_path) }}" alt="">
                 <h5>{{ $item->original_img_name }}</h5>

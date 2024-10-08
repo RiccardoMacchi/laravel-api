@@ -24,6 +24,7 @@
                     <th scope="col">Preview</th>
                     <th scope="col">Tecnologia</th>
                     <th scope="col">Link a GitHub</th>
+                    <th scope="col">Frameworks</th>
                     <th scope="col">Descrizione</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Azioni</th>
@@ -52,10 +53,16 @@
                             @endforelse
                         </td>
                         <td>{{ $item->git_link }}</td>
+                        <td>
+                            @foreach ($item->frameworks as $framework)
+                                <a class="badge text-bg-primary" href="#">{{ $framework->name }}</a>
+                            @endforeach
+                        </td>
                         <td>{{ $item->description }}</td>
                         <td>
                             @if ($item->type?->name)
-                                <span class="badge text-bg-warning">{{ $item->type?->name }}</span>
+                                <a class="badge text-bg-warning"
+                                    href="{{ route('admin.itemsTypes') }}">{{ $item->type?->name }}</a>
                             @else
                                 <span class="badge text-bg-danger">NESSUN TIPO</span>
                             @endif
