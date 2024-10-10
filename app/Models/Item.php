@@ -18,6 +18,7 @@ class Item extends Model
     protected $fillable = [
         'title',
         'git_link',
+        'project_link',
         'repo_name',
         'date',
         'description',

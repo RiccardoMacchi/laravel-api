@@ -19,7 +19,7 @@ class ItemSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for($i = 0; $i < 200; $i++){
+        for($i = 0; $i < 0; $i++){
             $new_item = new Item();
             $new_item->title = $faker->word();
             $new_item->git_link = $faker->word();

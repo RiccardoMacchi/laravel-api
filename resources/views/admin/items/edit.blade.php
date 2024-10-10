@@ -53,7 +53,15 @@
                     <small>{{ $message }}</small>
                 @enderror
             </div>
-
+            {{-- link al progetto --}}
+            <div class="form-group">
+                <label for="project_link">Link al progetto:</label>
+                <input type="text" class="form-control" id="project_link" name="project_link"
+                    placeholder="Inserisci il link al progetto" value="{{ old('project_link', $item->project_link) }}">
+                @error('project_link')
+                    <small>{{ $message }}</small>
+                @enderror
+            </div>
             {{-- Checkbox per technologies --}}
             <div>
                 <label for="technologies">Seleziona la tecnologia usata:</label>

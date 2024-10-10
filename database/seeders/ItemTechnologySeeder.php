@@ -15,7 +15,7 @@ class ItemTechnologySeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i=0; $i < 300; $i++) {
+        for ($i=0; $i < 0; $i++) {
             // Estrazione item random
             $item = Item::inRandomOrder()->first();
 

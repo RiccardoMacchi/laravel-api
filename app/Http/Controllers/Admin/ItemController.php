@@ -22,13 +22,6 @@ class ItemController extends Controller
     public function index()
     {
         $title = 'I miei Lavori';
-        // Controllo per effettuare la ricerca
-        if(isset($_GET['search'])){
-            $items = Item::where('title', 'LIKE', '%' . $_GET['search'] . '%')->orderBy('title')->paginate(10);
-            $items->appends(request()->query());
-
-            return view('admin.items.index', compact('items','title'));
-        }
 
         // Controllo per ordinamento
         $direction = 'asc';
@@ -40,6 +33,13 @@ class ItemController extends Controller
             return view('admin.items.index', compact('items','title','direction'));
         }
 
+        // Controllo per effettuare la ricerca
+        if(isset($_GET['search'])){
+            $items = Item::where('title', 'LIKE', '%' . $_GET['search'] . '%')->orderBy('title')->paginate(10);
+            $items->appends(request()->query());
+
+            return view('admin.items.index', compact('items','title','direction'));
+        }
 ;       $items = Item::orderBy('title')->paginate(10);
         return view('admin.items.index', compact('items','title','direction'));
     }

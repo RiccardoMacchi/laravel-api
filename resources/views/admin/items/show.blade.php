@@ -37,6 +37,7 @@
                 <img class="img-fluid w-25" src="{{ asset('storage/' . $item->img_path) }}" alt="">
                 <h5>{{ $item->original_img_name }}</h5>
                 <a href="{{ $item->git_link }}" target="_blank" class="btn btn-primary">Vai a GitHub</a>
+                <a href="{{ $item->project_link }}" target="_blank" class="btn btn-success">Vai al progetto</a>
             </div>
             <div class="card-footer text-muted">
                 {{ $item->date }}

@@ -15,7 +15,7 @@ class FrameworksItemsSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i=0; $i < 100; $i++) {
+        for ($i=0; $i < 0; $i++) {
             $item = Item::inRandomOrder()->first();
 
             $framework_id = Framework::inRandomOrder()->first()->id;
