@@ -67,7 +67,7 @@ class ItemController extends Controller
         $new_item = new Item();
 
         if(array_key_exists('img_path',$data)){
-            $img_path = Storage::put('uploads',$data['img_path']);
+            $img_path = $request->file('img_path')->store('uploads', 'public');
             $img_name = $request->file('img_path')->getClientOriginalName();
             $data['img_path'] = $img_path;
             $data['original_img_name'] = $img_name;
@@ -125,11 +125,11 @@ class ItemController extends Controller
         if(array_key_exists('img_path',$data)){
             // Canello la vecchia immagine
             if($item->img_path){
-                Storage::delete($item->img_path);
+                Storage::delete('public/' . $item->img_path);
             }
 
             // Aggiunngi l'immagine
-            $img_path = Storage::put('uploads',$data['img_path']);
+            $img_path = $request->file('img_path')->store('uploads', 'public');
             // Salvo il nome
             $img_name = $request->file('img_path')->getClientOriginalName();
             // Assegnamo le variabili all'istanza

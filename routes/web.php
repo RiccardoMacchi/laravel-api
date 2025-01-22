@@ -48,7 +48,6 @@ Route::middleware(['auth','verified'])
         Route::resource('techs', TechnologyController::class);
         Route::resource('frameworks', FrameworkController::class);
 
-
     });
 
 require __DIR__.'/auth.php';
