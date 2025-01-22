@@ -19,9 +19,9 @@ class PageController extends Controller
     public function index(){
 
         if(isset($_GET['search'])){
-            $items = Item::where('title', 'LIKE', '%' . $_GET['search'] . '%')->orderBy('title')->with('technologies', 'type','frameworks')->paginate(10);
+            $items = Item::where('title', 'LIKE', '%' . $_GET['search'] . '%')->orderBy('title')->with('technologies', 'type','frameworks')->paginate(4);
         }else{
-            $items = Item::orderBy('title')->with('technologies', 'type','frameworks')->paginate(10);
+            $items = Item::orderBy('title')->with('technologies', 'type','frameworks')->paginate(4);
         }
 
 
