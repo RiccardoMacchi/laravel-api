@@ -99,8 +99,24 @@ class PageController extends Controller
     }
 
     public function listByType($slug){
-        $type = Type::where('slug', $slug)->with('items')->first();
+        $type = Type::where('slug', $slug)->with([
+            'items' => function($query) {
+                    $query->with([
+                        'technologies',
+                        'frameworks',
+                        'type'
+                    ]);
+                }
+            ])->first();
         if($type){
+            foreach($type->items as $item){
+                if($item->img_path){
+                    $item->img_path = Storage::url($item->img_path);
+                } else {
+                    $item->img_path = Storage::url('placeholder_img.jpg');
+                    $item->original_img_name = 'No image';
+                }
+            }
             $success = true;
         } else{
             $success = false;
@@ -109,8 +125,24 @@ class PageController extends Controller
     }
 
     public function listByTechnology($slug){
-        $technology = Technology::where('slug', $slug)->with('items')->first();
+        $technology = Technology::where('slug', $slug)->with([
+            'items' => function($query) {
+                    $query->with([
+                        'technologies',
+                        'frameworks',
+                        'type'
+                    ]);
+                }
+            ])->first();
         if($technology){
+            foreach($technology->items as $item){
+                if($item->img_path){
+                    $item->img_path = Storage::url($item->img_path);
+                } else {
+                    $item->img_path = Storage::url('placeholder_img.jpg');
+                    $item->original_img_name = 'No image';
+                }
+            }
             $success = true;
         } else{
             $success = false;
@@ -119,8 +151,24 @@ class PageController extends Controller
     }
 
     public function listByFramework($slug){
-        $framework = Framework::where('slug', $slug)->with('items')->first();
+        $framework = Framework::where('slug', $slug)->with([
+            'items' => function($query) {
+                    $query->with([
+                        'technologies',
+                        'frameworks',
+                        'type'
+                    ]);
+                }
+            ])->first();
         if($framework){
+            foreach($framework->items as $item){
+                if($item->img_path){
+                    $item->img_path = Storage::url($item->img_path);
+                } else {
+                    $item->img_path = Storage::url('placeholder_img.jpg');
+                    $item->original_img_name = 'No image';
+                }
+            }
             $success = true;
         } else{
             $success = false;

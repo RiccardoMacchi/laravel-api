@@ -13,10 +13,10 @@
         <li><a href="{{ route('admin.types.index') }}"><i class="fa-solid fa-layer-group"></i><span
                     class="d-none d-md-inline"> Gestisci Tipi</span></a></li>
         <li><a href="{{ route('admin.techs.index') }}"><i class="fa-solid fa-microchip"></i><span
-                    class="d-none d-md-inline"> Gestiscle Tecnologie</span></a>
+                    class="d-none d-md-inline"> Gestisci Tecnologie</span></a>
         </li>
         <li><a href="{{ route('admin.frameworks.index') }}"><i class="fa-brands fa-phoenix-framework"></i><span
-                    class="d-none d-md-inline"> Gestiscle Frameworks</span></a>
+                    class="d-none d-md-inline"> Gestisci Frameworks</span></a>
         </li>
     </ul>
 </aside>
