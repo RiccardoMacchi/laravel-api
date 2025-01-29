@@ -9,28 +9,56 @@ use App\Functions\Helper;
 use App\Models\Type;
 
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\DB;
 
 class ItemSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        $faker = Faker::create();
+        // Percorso del file CSV
+        $filePath = public_path('csv/items.csv');
 
-        for($i = 0; $i < 0; $i++){
-            $new_item = new Item();
-            $new_item->title = $faker->word();
-            $new_item->git_link = $faker->word();
-            $new_item->repo_name = $faker->word();
-            $new_item->date = $faker->dateTime();
-            $new_item->description = $faker->paragraph();
-            $new_item->slug = Helper::generateSlug($new_item->title, Item::class);
-            // dump($new_item);
-            // Estraiamo randomaticamente un elemento dalla tabella types e prendiamo il primo elemento e di quello l'ID
-            $new_item->type_id = Type::inRandomOrder()->first()->id;
-            $new_item->save();
+        // Controlla se il file esiste
+        if (!file_exists($filePath)) {
+            $this->command->error("Il file CSV non esiste in {$filePath}");
+            return;
         }
+
+        // Legge il contenuto del file CSV
+        $csvData = array_map('str_getcsv', file($filePath));
+
+        // Estrai la prima riga come intestazioni
+        $headers = array_map('trim', $csvData[0]);
+        unset($csvData[0]); // Rimuovi le intestazioni dai dati
+
+        // Cicla attraverso ogni riga del CSV
+        $items = [];
+        foreach ($csvData as $row) {
+            $row = array_combine($headers, $row); // Combina i dati con le intestazioni
+
+            // Aggiungi i dati alla lista dei progetti
+            $items[] = [
+                'title' => $row['title'],
+                'git_link' => $row['git_link'],
+                'project_link' => $row['project_link'] ?? null,
+                'repo_name' => $row['repo_name'],
+                'img_path' => $row['img_path'],
+                'original_img_name' => $row['original_img_name'],
+                'date' => date('Y-m-d', strtotime($row['date'])),
+                'description' => $row['description'],
+                'slug' => $row['slug'],
+                'type_id' => (int) $row['type_id'],
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+
+        // Inserisce i dati nella tabella 'items'
+        DB::table('items')->insert($items);
+
+        $this->command->info("I dati dal file CSV sono stati caricati con successo nella tabella 'items'.");
     }
 }
