@@ -7,24 +7,40 @@ use Illuminate\Database\Seeder;
 
 use App\Models\Technology;
 use App\Models\Item;
+use Illuminate\Support\Facades\DB;
 
 class ItemTechnologySeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        for ($i=0; $i < 0; $i++) {
-            // Estrazione item random
-            $item = Item::inRandomOrder()->first();
+        // Path al file CSV
+        $filePath = public_path('csv/item_technology.csv');
 
-            // Estrazione technology ID random
-            $tech_id = Technology::inRandomOrder()->first()->id;
+        // Verifica se il file esiste
+        if (file_exists($filePath)) {
+            // Ottieni il contenuto del file CSV
+            $csvData = array_map('str_getcsv', file($filePath));
 
-            // Aggiungiamo la relazione tra un elemento e l'id dell altro elemento della tabella in relazione
-            $item->technologies()->attach($tech_id);
+            // Elimina la prima riga (intestazioni)
+            array_shift($csvData);
 
+            // Inserisci i dati nella tabella pivot
+            foreach ($csvData as $row) {
+                // Assicurati che ogni riga contenga il framework_id e item_id
+                if (isset($row[0]) && isset($row[1])) {
+                    DB::table('item_technology')->insert([
+                        'item_id' => $row[0],
+                        'technology_id' => $row[1],
+                    ]);
+                }
+            }
+
+            $this->command->info("Tabella 'framework_item' popolata con successo!");
+        } else {
+            $this->command->error("Il file CSV non esiste nella directory specificata!");
         }
     }
 }
