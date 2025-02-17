@@ -87,6 +87,15 @@
             </div>
 
             <div class="form-group">
+                <label for="short_description">Descrizione breve:</label>
+                <textarea name="short_description" id="short_description" rows="3"> {{ old('short_description') }}</textarea>
+
+                @error('short_description')
+                    <small>{{ $message }}</small>
+                @enderror
+            </div>
+
+            <div class="form-group">
                 <label for="description">Descrizione:</label>
                 <textarea name="description" id="description"> {{ old('description') }}</textarea>
 

@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('img_path')->nullable();
             $table->string('original_img_name')->nullable();
             $table->date('date');
-            $table->text('description');
+            $table->text('short_description')->nullable();
+            $table->text('description')->nullable();
             $table->string('slug', 255);
             $table->timestamps();
         });

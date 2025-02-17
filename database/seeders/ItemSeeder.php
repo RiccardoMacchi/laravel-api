@@ -48,6 +48,7 @@ class ItemSeeder extends Seeder
                 'img_path' => $row['img_path'],
                 'original_img_name' => $row['original_img_name'],
                 'date' => date('Y-m-d', strtotime($row['date'])),
+                'short_description' => $row['short_description'],
                 'description' => $row['description'],
                 'slug' => $row['slug'],
                 'type_id' => (int) $row['type_id'],

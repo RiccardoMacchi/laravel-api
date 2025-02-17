@@ -27,7 +27,8 @@ class ItemRequest extends FormRequest
             'project_link' => ['nullable','string','min:5','max:255'],
             'repo_name' => ['required', 'string', 'min:2', 'max:255'],
             'date' => ['required', 'date'],
-            'description' => ['required', 'string','min:10'],
+            'short_description' => ['nullable', 'string','min:5'],
+            'description' => ['nullable', 'string','min:10'],
             'type_id' => ['required'],
             'img_path' => ['image','mimes:png,jpg','max:5120']
         ];
@@ -58,7 +59,9 @@ class ItemRequest extends FormRequest
             'date.required' => 'La data è obbligatoria.',
             'date.date' => 'Il valore fornito deve essere una data valida.',
 
-            'description.required' => 'La descrizione è obbligatoria.',
+            'short_description.string' => 'La descrizione deve essere una stringa.',
+            'short_description.min' => 'La descrizione deve avere almeno 5 carattere.',
+
             'description.string' => 'La descrizione deve essere una stringa.',
             'description.min' => 'La descrizione deve avere almeno 10 carattere.',
 

@@ -58,7 +58,7 @@
                                 <a class="badge text-bg-primary" href="#">{{ $framework->name }}</a>
                             @endforeach
                         </td>
-                        <td>{{ $item->description }}</td>
+                        <td>{{ $item->short_description }}</td>
                         <td>
                             @if ($item->type?->name)
                                 <a class="badge text-bg-warning"

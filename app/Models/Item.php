@@ -21,6 +21,7 @@ class Item extends Model
         'project_link',
         'repo_name',
         'date',
+        'short_description',
         'description',
         'slug',
         'type_id',
