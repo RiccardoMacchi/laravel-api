@@ -1,14 +1,14 @@
 <header>
     <div class="container-fluid bg-dark text-white d-flex justify-content-between px-3" id="my_navbar">
         <div>
-            <a href="{{ route('home') }}" target="_blank"><img src="{{ Vite::asset('public/logo-r4.png') }}"
+            <a href="{{ route('home') }}" target="_blank"><img src="{{ asset('logo-r4.png') }}"
                     alt="LOGO"></a>
         </div>
         <div>
             <ul class="navbar">
                 @guest
                     <li class="nav-item"><a href="{{ route('login') }}">Login</a></li>
-                    <li class="nav-item ms-3"><a href="{{ route('register') }}">Registrati</a></li>
+                    {{-- <li class="nav-item ms-3"><a href="{{ route('register') }}">Registrati</a></li> --}}
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
